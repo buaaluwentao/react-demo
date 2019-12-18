@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <!-- https://reactjs.org/docs/refs-and-the-dom.html#callback-refs -->
+    <script type="text/babel">
+        class RealDOMAndEvent extends React.Component{
+            constructor(props){
+                super(props);
+                this.handleClick = this.handleClick.bind(this);
+                this.inputTextRef = React.createRef(); 
+            }
+
+            handleClick(){
+                this.inputTextRef.current.focus();    
+            }
+            
+            onChange(){
+
+            }
+
+            render(){
+                return (<div><input type="text" ref={this.inputTextRef} value="Bug-Killer" onChange={this.onChange} /><input type="text" onClick={this.handleClick} /></div>);
+            }
+        }
+
+        ReactDOM.render(<RealDOMAndEvent />, document.getElementById('example'));
+    </script>
+  </body>
+</html>

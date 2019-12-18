@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../build/react.development.js"></script>
+    <script src="../build/react-dom.development.js"></script>
+    <script src="../build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      class HelloWrold extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {
+                opacity: 1,
+            };
+        }
+
+        componentDidMount() {
+            this.timer = setInterval(function (){
+                let opacity = this.state.opacity;
+                if (opacity < 0.1) {
+                    opacity = 1;
+                } else {
+                    opacity -= 0.1;
+                }
+
+                this.setState({
+                    opacity
+                });
+            }.bind(this), 500);
+        }
+
+        render() {
+            return <p style={{opacity: this.state.opacity}}>hello, world</p>
+        }
+      };
+
+      ReactDOM.render(<HelloWrold name="hello, world"/>, document.getElementById('example'));
+    </script>
+  </body>
+</html>
